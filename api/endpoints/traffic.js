@@ -1,7 +1,7 @@
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
+const fetch = require('node-fetch');
+const cheerio = require('cheerio');
 
-const trafficurl = "https://511ny.org/list/events/traffic?start=0&length=100&order%5Bi%5D=1&order%5Bdir%5D=asc";
+const trafficurl = 'https://511ny.org/list/events/traffic?start=0&length=100&order%5Bi%5D=1&order%5Bdir%5D=asc';
 let cache = null;
 let lastCacheTime = null;
 
@@ -11,33 +11,33 @@ async function traffic() {
   }
   const response = await fetch(trafficurl);
   const html = await response.text();
-  console.log(html)
+  console.log(html);
   const $ = cheerio.load(html);
-  const title = $("traffic").text();
-  const table = $("table");
-  const header = table.find("thead tr");
+  const title = $('traffic').text();
+  const table = $('table');
+  const header = table.find('thead tr');
   const headers = [];
-  header.find("th").each((i, element) => {
+  header.find('th').each((i, element) => {
     headers.push(
       $(element)
-      .text()
-      .trim()
-      .replace(/\W/g, "_")
+        .text()
+        .trim()
+        .replace(/\W/g, '_'),
     );
   });
   const rows = [];
-  $(table.find("tfoot tr")[0])
-    .find("th")
+  $(table.find('tfoot tr')[0])
+    .find('th')
     .each((i, element) => {
       const row = {};
       $(element)
-        .find("td")
+        .find('td')
         .each((i, column) => {
           row[headers[i]] = $(column)
             .text()
             .trim();
           if (i !== 0) {
-            row[headers[i]] = Number(row[headers[i]].replace(/\+|,/g, "") || 0);
+            row[headers[i]] = Number(row[headers[i]].replace(/\+|,/g, '') || 0);
           }
         });
       rows.push(row);

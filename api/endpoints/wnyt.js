@@ -1,7 +1,7 @@
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
+const fetch = require('node-fetch');
+const cheerio = require('cheerio');
 
-const wnyturl = "https://wnyt.com/closings/";
+const wnyturl = 'https://wnyt.com/closings/';
 let cache = null;
 let lastCacheTime = null;
 
@@ -12,25 +12,25 @@ async function wnyt() {
   const response = await fetch(wnyturl);
   const html = await response.text();
   const $ = cheerio.load(html);
-  const title = $("Closed").text();
-  const table = $("table ");
-  const header = table.find("tbody tr");
+  const title = $('Closed').text();
+  const table = $('table ');
+  const header = table.find('tbody tr');
   const headers = [];
-  header.find("td").each((i, element) => {
+  header.find('td').each((i, element) => {
     headers.push(
       $(element)
-      .text()
-      .trim()
-      .replace(/\W/g, "_")
+        .text()
+        .trim()
+        .replace(/\W/g, '_'),
     );
   });
   const rows = [];
-  $(table.find("tbody")[2])
-    .find("div.row")
+  $(table.find('tbody')[2])
+    .find('div.row')
     .each((i, element) => {
       const row = {};
       $(element)
-        .find("")
+        .find('')
         .each((i, column) => {
           row[headers[i]] = $(column)
             .text()

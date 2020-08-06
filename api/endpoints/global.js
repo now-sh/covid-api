@@ -1,7 +1,7 @@
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
+const fetch = require('node-fetch');
+const cheerio = require('cheerio');
 
-const globalurl = "https://www.worldometers.info/coronavirus/#countries";
+const globalurl = 'https://www.worldometers.info/coronavirus/#countries';
 let cache = null;
 let lastCacheTime = null;
 
@@ -12,31 +12,31 @@ async function global() {
   const response = await fetch(globalurl);
   const html = await response.text();
   const $ = cheerio.load(html);
-  const title = $("countries").text();
-  const table = $("table");
-  const header = table.find("thead tr");
+  const title = $('countries').text();
+  const table = $('table');
+  const header = table.find('thead tr');
   const headers = [];
-  header.find("th").each((i, element) => {
+  header.find('th').each((i, element) => {
     headers.push(
       $(element)
-      .text()
-      .trim()
-      .replace(/\W/g, "_")
+        .text()
+        .trim()
+        .replace(/\W/g, '_'),
     );
   });
   const rows = [];
-  $(table.find("tbody")[0])
-    .find("tr")
+  $(table.find('tbody')[0])
+    .find('tr')
     .each((i, element) => {
       const row = {};
       $(element)
-        .find("td")
+        .find('td')
         .each((i, column) => {
           row[headers[i]] = $(column)
             .text()
             .trim();
           if (i !== 0) {
-            row[headers[i]] = Number(row[headers[i]].replace(/\+|,/g, "") || 0);
+            row[headers[i]] = Number(row[headers[i]].replace(/\+|,/g, '') || 0);
           }
         });
       rows.push(row);

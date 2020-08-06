@@ -16,6 +16,7 @@
 
   }],
   "env": {
+    "NODE_ENV": "production",
     "PORT": "1919",
     "HEADER_AGENT": "Awesome-Octocat-App",
     "GITHUB_API_KEY": "myverylonggithubapikey",

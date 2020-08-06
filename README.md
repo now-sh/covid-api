@@ -3,6 +3,7 @@
 #### To use
 
 ```bash
-npm install
+npm i
+
 npm run dev
 ```
