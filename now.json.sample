@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [{
+    "src": "api/*.js",
+    "use": "@now/node"
+  }],
+  "routes": [{
+    "methods": ["POST", "OPTIONS", "GET"],
+    "headers": {
+      "Access-Control-Allow-Origin": "_",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+      "Access-Control-Allow-Credentials": "true"
+    },
+    "src": "^/(.*)$",
+    "dest": "/api/index.js"
+
+  }],
+  "env": {
+    "PORT": "1919",
+    "HEADER_AGENT": "Awesome-Octocat-App",
+    "GITHUB_API_KEY": "myverylonggithubapikey",
+    "VERSION": "1.8"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.1",
+  "description": "",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js",
+    "build": "",
+    "deploy": "now --prod"
+  },
+  "keywords": [],
+  "author": "JMH <git-admin@casjaysdev.com> (https://casjay.now.sh)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-errors": "^1.7.3",
+    "node-fetch": "^2.6.0",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
