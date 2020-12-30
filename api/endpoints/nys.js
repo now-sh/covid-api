@@ -10,8 +10,6 @@ const nysurl = 'https://health.data.ny.gov/resource/xdss-u53e.json?test_date=' +
 const cache = null;
 const lastCacheTime = null;
 
-console.log(nysurl)
-
 async function nys() {
   if (cache && lastCacheTime > Date.now() - 1000 * 60 * 10) {
     return cache;
