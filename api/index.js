@@ -18,8 +18,8 @@ const app = express();
 
 const fetch = require('node-fetch');
 
-const myHeaders = require('./headers');
-const middlewares = require('./middlewares');
+const myHeaders = require('./inc/headers');
+const middlewares = require('./inc/middlewares');
 
 const traffic = require('./endpoints/traffic');
 const arcgis = require('./endpoints/arcgis');
