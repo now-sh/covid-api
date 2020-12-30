@@ -265,6 +265,6 @@ app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 
 const port = process.env.PORT || 2000;
-const hostname = process.env.HOSTNAME || localhost;
+const hostname = process.env.HOSTNAME;
 
 app.listen(port, () => console.log(`${hostname}:${port}`));
