@@ -38,6 +38,7 @@ app.get('/api', cors(), (req, res) => {
     res.send(
       JSON.stringify({
         Greetings: ' 🥞 🐛 💜 Welcome to my API Server 💜 🐛 🥞 ',
+        version: process.env.VERSION,
       }),
     );
   } catch (error) {
@@ -180,6 +181,36 @@ app.get('/api/v1/git', cors(), async (req, res) => {
         jason: '/api/v1/git/jason',
       }),
     );
+  } catch (error) {
+    res.send('An error has occurred');
+  }
+});
+
+app.get('/api/v1/git/:id', cors(), async (req, res) => {
+  const response = await fetch('https://api.github.com/users/:id', {
+    headers: {
+      myHeaders,
+    },
+  });
+  try {
+    const json = await response.json();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(json);
+  } catch (error) {
+    res.send('An error has occurred');
+  }
+});
+
+app.get('/api/v1/git/:user', cors(), async (req, res) => {
+  const response = await fetch('https://api.github.com/users/:user/repos', {
+    headers: {
+      myHeaders,
+    },
+  });
+  try {
+    const json = await response.json();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(json);
   } catch (error) {
     res.send('An error has occurred');
   }
