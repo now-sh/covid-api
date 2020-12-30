@@ -10,7 +10,7 @@ const datetime = require('node-datetime');
 
 const dttoday = datetime.create();
 const dtyester = datetime.create();
-dtyester.offsetInDays(-1.3);
+dtyester.offsetInDays(-1.4);
 const yesterday = dtyester.format('Y-m-d');
 const today = dttoday.format('Y-m-d');
 const curtime = dttoday.format('H:M');
@@ -121,13 +121,13 @@ app.get('/api/v1/global', cors(), async (req, res) => {
   }
 });
 
-const nysurl = `https://health.data.ny.gov/resource/xdss-u53e.json?test_date=${yesterday}T00:00:00.000`;
 app.get('/api/v1/usa', cors(), async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
     res.send(
       JSON.stringify({
-        states: [`nys: ${nysurl}`],
+        local: [`nys: ${nysurl}`],
+        states: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
       }),
     );
   } catch (error) {
@@ -135,6 +135,7 @@ app.get('/api/v1/usa', cors(), async (req, res) => {
   }
 });
 
+const nysurl = `https://health.data.ny.gov/resource/xdss-u53e.json?test_date=${yesterday}T00:00:00.000`;
 app.get('/api/v1/usa/nys', cors(), async (req, res) => {
   try {
     const usanys = await nys();
@@ -147,6 +148,21 @@ app.get('/api/v1/usa/nys', cors(), async (req, res) => {
     );
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+app.get('/api/v1/usa/:id', cors(), async (req, res) => {
+  const response = await fetch(`https://disease.sh/v3/covid-19/states/${req.params.id}`, {
+    headers: {
+      myHeaders,
+    },
+  });
+  try {
+    const json = await response.json();
+    res.setHeader('Content-Type', 'application/json');
+    res.send(json);
+  } catch (error) {
+    res.send('An error has occurred');
   }
 });
 

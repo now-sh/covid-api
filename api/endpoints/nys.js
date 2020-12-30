@@ -4,12 +4,11 @@ const datetime = require('node-datetime');
 
 const dttoday = datetime.create();
 const dtyester = datetime.create();
-dtyester.offsetInDays(-1.3);
+dtyester.offsetInDays(-1.4);
 const yesterday = dtyester.format('Y-m-d');
 const today = dttoday.format('Y-m-d');
 
 const nysurl = `https://health.data.ny.gov/resource/xdss-u53e.json?test_date=${yesterday}T00:00:00.000`;
-// const nysurl = 'https://health.data.ny.gov/resource/xdss-u53e.json?test_date=2020-12-28T00:00:00.000';
 const cache = null;
 const lastCacheTime = null;
 
