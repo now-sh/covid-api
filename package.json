@@ -19,7 +19,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.0.0",
-    "lodash": "^4.17.20",
     "morgan": "^1.10.0",
     "node-datetime": "^2.1.2",
     "node-fetch": "^2.6.0"
