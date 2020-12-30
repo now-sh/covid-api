@@ -18,9 +18,7 @@ async function nys() {
   // }
 
   return fetch(nysurl)
-    .then((response) => response.json())
-    .then((json) => json).catch(() => []);
-  console.log(nysurl);
+    .then((response) => response.json());
 }
 
 module.exports = nys;

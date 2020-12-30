@@ -111,12 +111,13 @@ app.get('/api/v1/global', cors(), async (req, res) => {
   }
 });
 
+const nysurl = `https://health.data.ny.gov/resource/xdss-u53e.json?test_date=${yesterday}T00:00:00.000`;
 app.get('/api/v1/usa', cors(), async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   try {
     res.send(
       JSON.stringify({
-        states: ['nys'],
+        states: [`nys: ${nysurl}`],
       }),
     );
   } catch (error) {
