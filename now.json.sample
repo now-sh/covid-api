@@ -1,20 +1,27 @@
 {
   "version": 2,
-  "builds": [{
-    "src": "api/*.js",
-    "use": "@now/node"
-  }],
-  "routes": [{
-    "methods": ["POST", "OPTIONS", "GET"],
-    "headers": {
-      "Access-Control-Allow-Origin": "_",
-      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-      "Access-Control-Allow-Credentials": "true"
-    },
-    "src": "^/(.*)$",
-    "dest": "/api/index.js"
-
-  }],
+  "builds": [
+    {
+      "src": "api/*.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "methods": [
+        "POST",
+        "OPTIONS",
+        "GET"
+      ],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Credentials": "true"
+      },
+      "src": "^/(.*)$",
+      "dest": "/api/index.js"
+    }
+  ],
   "env": {
     "NODE_ENV": "production",
     "PORT": "1919",
