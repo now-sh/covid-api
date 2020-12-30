@@ -13,6 +13,7 @@ const dtyester = datetime.create();
 dtyester.offsetInDays(-1);
 const yesterday = dtyester.format('Y-m-d');
 const today = dttoday.format('Y-m-d');
+const curtime = dttoday.format('H:M');
 
 const dotenv = require('dotenv').config();
 
@@ -48,8 +49,10 @@ app.get('/api', cors(), (req, res) => {
       JSON.stringify({
         Greetings: ' 🥞 🐛 💜 Welcome to my API Server 💜 🐛 🥞 ',
         Version: process.env.VERSION,
+        TimeZone: process.env.TZ,
         Yesterday: yesterday,
         Today: today,
+        Time: curtime,
       }),
     );
   } catch (error) {
@@ -77,7 +80,12 @@ app.get('/api/v1/version', cors(), async (req, res) => {
   try {
     res.send(
       JSON.stringify({
-        version: process.env.VERSION,
+        Greetings: ' 🥞 🐛 💜 Welcome to my API Server 💜 🐛 🥞 ',
+        Version: process.env.VERSION,
+        TimeZone: process.env.TZ,
+        Yesterday: yesterday,
+        Today: today,
+        Time: curtime,
       }),
     );
   } catch (error) {
@@ -138,7 +146,7 @@ app.get('/api/v1/usa/nys', cors(), async (req, res) => {
       }),
     );
   } catch (err) {
-    res.send('An error has occurred');
+    res.status(500).send(err);
   }
 });
 
