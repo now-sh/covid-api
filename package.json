@@ -10,7 +10,7 @@
     "lint": "eslint api/"
   },
   "keywords": [],
-  "author": "JMH <git-admin@casjaysdev.com> (https://casjay.now.sh)",
+  "author": "CasjaysDev <git-admin@casjaysdev.com> (https://casjay.now.sh)",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "helmet": "^4.0.0",
     "morgan": "^1.10.0",
+    "node-datetime": "^2.1.2",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
