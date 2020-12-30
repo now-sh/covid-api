@@ -186,36 +186,6 @@ app.get('/api/v1/git', cors(), async (req, res) => {
   }
 });
 
-app.get('/api/v1/git/:id', cors(), async (req, res) => {
-  const response = await fetch('https://api.github.com/users/:id', {
-    headers: {
-      myHeaders,
-    },
-  });
-  try {
-    const json = await response.json();
-    res.setHeader('Content-Type', 'application/json');
-    res.send(json);
-  } catch (error) {
-    res.send('An error has occurred');
-  }
-});
-
-app.get('/api/v1/git/:user', cors(), async (req, res) => {
-  const response = await fetch('https://api.github.com/users/:user/repos', {
-    headers: {
-      myHeaders,
-    },
-  });
-  try {
-    const json = await response.json();
-    res.setHeader('Content-Type', 'application/json');
-    res.send(json);
-  } catch (error) {
-    res.send('An error has occurred');
-  }
-});
-
 app.get('/api/v1/git/jason', cors(), async (req, res) => {
   const response = await fetch('https://api.github.com/users/casjay', {
     headers: {
