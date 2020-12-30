@@ -13,13 +13,14 @@ const cache = null;
 const lastCacheTime = null;
 
 async function nys() {
-  if (cache && lastCacheTime > Date.now() - 1000 * 60 * 10) {
-    return cache;
-  }
+  // if (cache && lastCacheTime > Date.now() - 1000 * 60 * 10) {
+  //   return cache;
+  // }
 
   return fetch(nysurl)
     .then((response) => response.json())
     .then((json) => json).catch(() => []);
+  console.log(nysurl);
 }
 
 module.exports = nys;
