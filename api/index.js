@@ -243,9 +243,7 @@ app.get('/api/v1/git/org/:id', cors(), async (req, res) => {
 });
 
 app.get('/api/v1/reddit/:id', cors(), async (req, res) => {
-  const response = await fetch(
-    `https://www.reddit.com/r/${req.params.id}/.json?sort=new&limit=500`,
-  );
+  const response = await fetch(`https://www.reddit.com/r/${req.params.id}/.json?sort=new&limit=500`);
   res.setHeader('Content-Type', 'application/json');
   try {
     const json = await response.json();
