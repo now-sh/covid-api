@@ -134,7 +134,9 @@ app.get('/api/v1/usa/nys', cors(), async (req, res) => {
         nys: usanys,
       }),
     );
-  } catch (err) {}
+  } catch (err) {
+    res.send('An error has occurred');
+  }
 });
 
 app.get('/api/v1/closings', cors(), async (req, res) => {
