@@ -4,6 +4,13 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
+const datetime = require('node-datetime');
+
+const dttoday = datetime.create();
+const dtyester = datetime.create();
+dtyester.offsetInDays(-1);
+const yesterday = dtyester.format('Y-m-d');
+const today = dttoday.format('Y-m-d');
 
 const dotenv = require('dotenv').config();
 
@@ -38,7 +45,9 @@ app.get('/api', cors(), (req, res) => {
     res.send(
       JSON.stringify({
         Greetings: ' 🥞 🐛 💜 Welcome to my API Server 💜 🐛 🥞 ',
-        version: process.env.VERSION,
+        Version: process.env.VERSION,
+        Yesterday: yesterday,
+        Today: today,
       }),
     );
   } catch (error) {
@@ -107,7 +116,7 @@ app.get('/api/v1/usa', cors(), async (req, res) => {
   try {
     res.send(
       JSON.stringify({
-        usa: 'nys',
+        states: ['nys'],
       }),
     );
   } catch (error) {
