@@ -1,3 +1,5 @@
+process.env.TZ = 'America/New_York';
+
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
